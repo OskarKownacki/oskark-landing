@@ -1,0 +1,122 @@
+/* =========================================================================
+   CAMPFIRE — kolory
+   Dark-first: :root i [data-theme="dark"] = NOC (nocne niebo, góry, zorza).
+   [data-theme="light"] = ŚWIT (ciepły pergamin, przygaszony żar).
+   Wszystkie pary tekst/tło ≥ 4.5:1 (WCAG AA); tekst główny ≥ 14:1.
+   ========================================================================= */
+
+:root,
+[data-theme="dark"] {
+  /* --- skala: nocne niebo --- */
+  --night-1000: #080A1C; /* najgłębszy granat — tło poza treścią, hero */
+  --night-900: #10142E; /* tło strony */
+  --night-800: #171C3C; /* karty, panele */
+  --night-700: #1F254B; /* drugorzędne tło, code blocki */
+  --night-600: #2A3160; /* obramowania */
+  --night-500: #232A54; /* delikatne linie */
+
+  /* --- skala: ciepła latarnia --- */
+  --lantern-300: #FFD199; /* rozżarzenie — hover */
+  --lantern-400: #FFB35C; /* światło latarni — akcent główny */
+  --lantern-600: #A34A0E; /* przygaszony żar — akcent w świetle dnia */
+  --lantern-700: #7E3608; /* hover w świetle dnia */
+
+  /* --- skala: fiolet zmierzchu --- */
+  --dusk-300: #E0D6FF; /* najjaśniejszy fiolet — hover */
+  --dusk-400: #C6B6FF; /* delikatny fiolet — akcent wspierający, podkreślenia */
+  --dusk-700: #5B3FA6; /* głęboki fiolet — akcent wspierający w świetle dnia */
+
+  /* --- powierzchnie --- */
+  --color-bg: var(--night-900); /* tło strony */
+  --color-bg-deep: var(--night-1000); /* hero, stopka, sekcje „nocne” */
+  --color-surface: var(--night-800); /* karty, panele, popovery */
+  --color-surface-subtle: var(--night-700); /* hover wiersza, cytat, blok kodu */
+  --color-border: var(--night-600); /* obramowanie bazowe: karty, inputy */
+  --color-border-subtle: var(--night-500); /* separatory i linie sekcji */
+
+  /* --- tekst --- */
+  --color-text-primary: #F5EFE4; /* nagłówki i tekst główny — ciepła kość (16.7:1) */
+  --color-text-secondary: #C8CAE4; /* leady, opisy, akapity wtórne (10.5:1) */
+  --color-text-muted: #9095B8; /* metadane, daty, captiony (5.4:1) */
+
+  /* --- akcent główny: latarnia --- */
+  --color-accent: var(--lantern-400); /* CTA, linki, stan aktywny (10.1:1) */
+  --color-accent-hover: var(--lantern-300); /* hover/active — rozżarzenie */
+  --color-accent-subtle: #33220F; /* tło pod akcentem: badge, zaznaczenie */
+  --color-on-accent: var(--night-900); /* tekst na wypełnionym akcencie (10.1:1) */
+
+  /* --- akcent wspierający: fiolet zmierzchu --- */
+  --color-accent-alt: var(--dusk-400); /* podkreślenia, eyebrow, dane liczbowe (9.8:1) */
+  --color-accent-alt-subtle: #1E1836; /* tło pod fioletem */
+  --color-on-accent-alt: var(--night-900); /* tekst na wypełnionym fiolecie */
+
+  /* --- statusy --- */
+  --color-success: #7BE0A8; /* dostępny, deployed (12.1:1) */
+  --color-success-subtle: #11291F; /* tło badge sukcesu */
+  --color-error: #FF8B7A; /* błąd walidacji / builda (7.7:1) */
+  --color-error-subtle: #2E1614; /* tło badge błędu */
+  --color-warning: #FFC65C; /* work in progress (11.7:1) */
+  --color-warning-subtle: #2C2010; /* tło badge ostrzeżenia */
+
+  /* --- scenografia: grań górska w trzech planach --- */
+  --ridge-far: #1B2246; /* najdalszy plan — rozmyta grań */
+  --ridge-mid: #141A38; /* plan środkowy */
+  --ridge-near: #0A0D22; /* pierwszy plan — najciemniejszy */
+  --sky-wash: radial-gradient(120% 80% at 50% 0%, #1A2148 0%, var(--color-bg-deep) 62%); /* niebo nad graniami */
+  --disc-color: #FFF6E2; /* księżyc */
+  --disc-glow: rgba(255, 246, 226, 0.22); /* halo księżyca */
+  --sun-color: #FFC96B; /* słońce — widoczne w chwili wschodu */
+  --sun-glow: rgba(255, 201, 107, 0.28); /* halo słońca */
+  --cloud-color: rgba(126, 146, 214, 0.20); /* nocne chmury — sine smugi na tle nieba */
+
+  --color-focus-ring: var(--lantern-400); /* obrys focus-visible */
+  --color-glow: rgba(255, 179, 92, 0.28); /* poświata latarni w hoverze i cieniu */
+  --color-star: rgba(245, 239, 228, 0.55); /* punkty gwiazd w tłach dekoracyjnych */
+
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --color-bg: #FAF4EA; /* tło strony — pergamin o świcie */
+  --color-bg-deep: #F2E9DA; /* sekcje wyróżnione */
+  --color-surface: #FFFCF6; /* karty, panele */
+  --color-surface-subtle: #F3EADC; /* hover, cytat, blok kodu */
+  --color-border: #DFD2BF; /* obramowanie bazowe */
+  --color-border-subtle: #EBE0CF; /* separatory */
+
+  --color-text-primary: #191C3A; /* nagłówki i tekst główny — granat nocy (15.0:1) */
+  --color-text-secondary: #3A3A5C; /* leady i opisy (9.9:1) */
+  --color-text-muted: #6A6480; /* metadane i captiony (5.1:1) */
+
+  --color-accent: var(--lantern-600); /* CTA i linki — przygaszony żar (5.4:1) */
+  --color-accent-hover: var(--lantern-700); /* hover/active */
+  --color-accent-subtle: #F8E5D2; /* tło pod akcentem */
+  --color-on-accent: #FFFCF6; /* tekst na wypełnionym akcencie */
+
+  --color-accent-alt: var(--dusk-700); /* podkreślenia, eyebrow — fiolet (7.0:1) */
+  --color-accent-alt-subtle: #EFEAFB; /* tło pod fioletem */
+  --color-on-accent-alt: #FFFCF6; /* tekst na wypełnionym fiolecie */
+
+  --color-success: #1F6B45; /* dostępny, deployed (6.0:1) */
+  --color-success-subtle: #E4F0E7; /* tło badge sukcesu */
+  --color-error: #B3261E; /* błąd walidacji (6.1:1) */
+  --color-error-subtle: #FBE3E0; /* tło badge błędu */
+  --color-warning: #8A5300; /* work in progress (5.4:1) */
+  --color-warning-subtle: #F9EBD2; /* tło badge ostrzeżenia */
+
+  --ridge-far: #EAE1D2; /* najdalszy plan w mgle — jasny, żeby ciemny tekst pozostał czytelny */
+  --ridge-mid: #DCCFBB; /* plan środkowy */
+  --ridge-near: #C3B49C; /* pierwszy plan — najciemniejszy, ale wciąż 7:1 wobec tekstu */
+  --sky-wash: radial-gradient(120% 80% at 50% 0%, #FFFDF8 0%, var(--color-bg) 70%); /* niebo dzienne */
+  --disc-color: #FFF6E2; /* księżyc — ten sam, tylko zachodzi */
+  --disc-glow: rgba(255, 246, 226, 0.30); /* halo księżyca */
+  --sun-color: #FFC96B; /* słońce */
+  --sun-glow: rgba(255, 201, 107, 0.38); /* halo słońca */
+  --cloud-color: rgba(255, 255, 255, 0.88); /* dzienne chmury */
+
+  --color-focus-ring: var(--lantern-600); /* obrys focus-visible */
+  --color-glow: rgba(163, 74, 14, 0.18); /* poświata żaru */
+  --color-star: rgba(25, 28, 58, 0.35); /* punkty gwiazd w tłach dekoracyjnych */
+
+  color-scheme: light;
+}

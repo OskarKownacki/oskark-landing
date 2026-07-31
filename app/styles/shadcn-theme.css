@@ -1,0 +1,88 @@
+/* Campfire → shadcn/ui variable bridge.
+   Aliases shadcn's expected variable names to our Campfire tokens, so
+   `npx shadcn add <component>` produces components already themed —
+   no manual color/font edits needed. Values inherit theme switching for
+   free since they point at --color-* vars that already flip on
+   [data-theme="light"] in campfire-colors.css. */
+:root {
+  --background: var(--color-bg);
+  --foreground: var(--color-text-primary);
+
+  --card: var(--color-surface);
+  --card-foreground: var(--color-text-primary);
+  --popover: var(--color-surface);
+  --popover-foreground: var(--color-text-primary);
+
+  --primary: var(--color-accent);
+  --primary-foreground: var(--color-on-accent);
+  --secondary: var(--color-surface-subtle);
+  --secondary-foreground: var(--color-text-primary);
+
+  --muted: var(--color-surface-subtle);
+  --muted-foreground: var(--color-text-muted);
+  --accent: var(--color-accent-alt-subtle);
+  --accent-foreground: var(--color-text-primary);
+
+  /* shadcn expects destructive as a solid button background; our --color-error
+     is tuned as status-pill text, not a button fill, so foreground is fixed
+     light/dark-neutral rather than following theme. */
+  --destructive: var(--color-error);
+  --destructive-foreground: #FFFCF6;
+
+  --border: var(--color-border);
+  --input: var(--color-border);
+  --ring: var(--color-focus-ring);
+
+  --chart-1: var(--color-accent);
+  --chart-2: var(--color-accent-alt);
+  --chart-3: var(--color-success);
+  --chart-4: var(--color-warning);
+  --chart-5: var(--color-error);
+
+  --sidebar: var(--color-surface);
+  --sidebar-foreground: var(--color-text-primary);
+  --sidebar-primary: var(--color-accent);
+  --sidebar-primary-foreground: var(--color-on-accent);
+  --sidebar-accent: var(--color-surface-subtle);
+  --sidebar-accent-foreground: var(--color-text-primary);
+  --sidebar-border: var(--color-border);
+  --sidebar-ring: var(--color-focus-ring);
+
+  --radius: var(--radius-md);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* radius-sm/md/lg/pill already mapped from Campfire tokens in globals.css —
+     not redefined here to avoid clobbering those. shadcn components using
+     rounded-sm/md/lg/xl get our real px scale; --radius above covers any
+     component reading var(--radius) directly. */
+
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
+  --font-mono: var(--font-mono);
+}

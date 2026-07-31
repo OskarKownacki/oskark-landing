@@ -1,0 +1,42 @@
+/* =========================================================================
+   CAMPFIRE — typografia
+   Instrument Serif (display, chętnie italic) / Manrope (tekst, UI) / IBM Plex Mono
+   ========================================================================= */
+
+:root {
+  --font-display: 'Instrument Serif', 'Times New Roman', serif; /* hero, H1–H2, cytaty */
+  --font-body: 'Manrope', 'Helvetica Neue', Helvetica, sans-serif; /* akapity, UI, H3–H4 */
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace; /* kod, stack, daty, eyebrow */
+
+  --font-weight-display: 400; /* Instrument Serif ma jedną wagę — skala robi robotę */
+  --font-weight-body: 400; /* tekst ciągły */
+  --font-weight-body-medium: 500; /* etykiety, przyciski */
+  --font-weight-body-semibold: 600; /* H3–H4, nawigacja */
+  --font-weight-body-bold: 700; /* wyróżnienia inline */
+  --font-weight-mono: 400; /* bloki kodu */
+  --font-weight-mono-medium: 500; /* inline code, chipy stacku, eyebrow */
+
+  /* skala 1.28 — odważna rozpiętość między display a tekstem */
+  --text-xs: 12px; /* eyebrow, mikro-etykiety */
+  --text-sm: 13px; /* metadane mono, captiony */
+  --text-base: 17px; /* tekst akapitowy — Manrope znosi większy stopień */
+  --text-md: 20px; /* lead / intro pod H1 */
+  --text-lg: 26px; /* H3 — tytuł karty / projektu */
+  --text-xl: 40px; /* H2 — nagłówek sekcji (display) */
+  --text-2xl: 60px; /* H1 podstrony (display) */
+  --text-3xl: 92px; /* hero — świadomie duże, jak nazwa konstelacji */
+
+  --leading-display: 0.98; /* hero — ciasny blok, litery się dotykają */
+  --leading-heading: 1.06; /* H1–H2 */
+  --leading-snug: 1.35; /* lead, tytuły kart */
+  --leading-body: 1.7; /* dłuższe akapity — powietrze = przytulność */
+
+  --tracking-display: -0.02em; /* zwężenie w bardzo dużych stopniach */
+  --tracking-heading: -0.01em; /* H2–H3 */
+  --tracking-mono: 0.02em; /* czytelność krótkich ciągów mono */
+  --tracking-label: 0.14em; /* mono uppercase: eyebrow, etykiety sekcji */
+
+  --measure-prose: 60ch; /* maksymalna szerokość akapitu */
+  --measure-lead: 44ch; /* maksymalna szerokość leadu */
+  --measure-display: 22ch; /* maksymalna szerokość nagłówka hero */
+}

@@ -1,0 +1,19 @@
+- generic [active] [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - heading "Test hero" [level=1] [ref=f1e4]
+      - heading "Test hero" [level=2] [ref=f1e5]
+  - generic [ref=f1e7]:
+    - heading "O mnie" [level=2] [ref=f1e8]
+    - article [ref=f1e9]:
+      - generic [ref=f1e10]: 01 — case study
+      - heading "Projekt pierwszy" [level=3] [ref=f1e11]
+      - paragraph [ref=f1e12]: Krótki opis projektu, do dwóch-trzech linijek, żeby było widać zawijanie tekstu w karcie.
+      - generic [ref=f1e13]:
+        - generic [ref=f1e14]: Next.js
+        - generic [ref=f1e15]: ·TypeScript
+        - generic [ref=f1e16]: ·Tailwind
+      - link "Zobacz repozytorium →" [ref=f1e17] [cursor=pointer]:
+        - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f1e23] [cursor=pointer]
+  - alert [ref=f1e27]

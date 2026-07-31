@@ -1,0 +1,53 @@
+- generic [active] [ref=f2e1]:
+  - generic [ref=f2e2]:
+    - banner [ref=f2e4]:
+      - generic [ref=f2e5]:
+        - heading "Test hero" [level=1] [ref=f2e6]
+        - heading "Test hero" [level=2] [ref=f2e7]
+        - button "Pogadajmy!" [ref=f2e8] [cursor=pointer]
+    - generic [ref=f2e9]:
+      - generic [ref=f2e10]:
+        - heading "Portfolio" [level=2] [ref=f2e11]
+        - generic [ref=f2e12]:
+          - generic [ref=f2e13]:
+            - generic [ref=f2e14]: ● Build gotowy
+            - article [ref=f2e15]:
+              - generic [ref=f2e16]: 01 — case study
+              - heading "Projekt pierwszy" [level=3] [ref=f2e17]
+              - paragraph [ref=f2e18]: Krótki opis projektu, do dwóch-trzech linijek, żeby było widać zawijanie tekstu w karcie.
+              - generic [ref=f2e19]:
+                - generic [ref=f2e20]: Next.js
+                - generic [ref=f2e21]: ·TypeScript
+                - generic [ref=f2e22]: ·Tailwind
+              - link "Zobacz repozytorium →" [ref=f2e23] [cursor=pointer]:
+                - /url: "#"
+          - generic [ref=f2e24]:
+            - generic [ref=f2e25]: ● Build gotowy
+            - article [ref=f2e26]:
+              - generic [ref=f2e27]: 01 — case study
+              - heading "Projekt pierwszy" [level=3] [ref=f2e28]
+              - paragraph [ref=f2e29]: Krótki opis projektu, do dwóch-trzech linijek, żeby było widać zawijanie tekstu w karcie.
+              - generic [ref=f2e30]:
+                - generic [ref=f2e31]: Next.js
+                - generic [ref=f2e32]: ·TypeScript
+                - generic [ref=f2e33]: ·Tailwind
+              - link "Zobacz repozytorium →" [ref=f2e34] [cursor=pointer]:
+                - /url: "#"
+          - generic [ref=f2e35]:
+            - generic [ref=f2e36]: ● Build gotowy
+            - article [ref=f2e37]:
+              - generic [ref=f2e38]: 01 — case study
+              - heading "Projekt pierwszy" [level=3] [ref=f2e39]
+              - paragraph [ref=f2e40]: Krótki opis projektu, do dwóch-trzech linijek, żeby było widać zawijanie tekstu w karcie.
+              - generic [ref=f2e41]:
+                - generic [ref=f2e42]: Next.js
+                - generic [ref=f2e43]: ·TypeScript
+                - generic [ref=f2e44]: ·Tailwind
+              - link "Zobacz repozytorium →" [ref=f2e45] [cursor=pointer]:
+                - /url: "#"
+      - generic [ref=f2e46]:
+        - heading "O mnie" [level=2] [ref=f2e47]
+        - generic [ref=f2e48]:
+          - img "Oskar" [ref=f2e49]
+          - heading "Meet the man" [level=2] [ref=f2e50]
+  - button "Open Next.js Dev Tools" [ref=f2e56] [cursor=pointer]
