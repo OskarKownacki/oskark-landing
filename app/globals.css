@@ -169,8 +169,12 @@
     position: relative;
     z-index: 1;
     min-height: 100vh;
+    /* przezroczysty blok na 100vh przykrywał księżyc/słońce (przełącznik motywu,
+       z-index 0) — kliki puszczamy przez puste miejsce, treść łapie je dalej */
+    pointer-events: none;
     /* background-image: var(--overlay-sky); */
   }
+  .hero > * { pointer-events: auto; }
   a { color: var(--color-accent); text-underline-offset: 4px; }
   a:hover { color: var(--color-accent-hover); }
   :focus-visible { outline: 2px solid var(--color-focus-ring); outline-offset: 3px; }

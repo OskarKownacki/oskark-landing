@@ -34,7 +34,7 @@ export default async function LandingPage() {
   const data = await getHeroData();
   return (
     <div className="relative flex flex-col gap-c5">
-      <MountainScene theme="dark" />
+      <MountainScene />
       <div className="hero">
         <header className="flex mt-[30vh] mx-[20vw]">
           <div className="flex flex-col gap-2">
