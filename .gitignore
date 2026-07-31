@@ -5,12 +5,13 @@
 /.pnp
 .pnp.*
 .yarn/*
-.playwright-mcp/
+.playwright-mcp
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
 
+./claude/*
 # testing
 /coverage
 
