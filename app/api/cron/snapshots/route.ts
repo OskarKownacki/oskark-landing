@@ -2,6 +2,10 @@ import mql from '@microlink/mql';
 import { writeClient } from '@/lib/sanity/client';
 import { SNAPSHOT_URL_QUERY } from '@/lib/sanity/queries';
 
+// Zrzuty Microlinka idą równolegle, ale pojedynczy potrafi trwać kilkanaście sekund.
+// 60 s mieści się w limicie każdego planu Vercela, także Hobby bez Fluid Compute.
+export const maxDuration = 60;
+
 type SnapshotDoc = {
     _id: string;
     url: string;
@@ -57,5 +61,6 @@ export async function GET(request: Request) {
     const updated = results.flatMap((result) => (result.status === 'fulfilled' ? [result.value] : []));
     const failed = results.flatMap((result) => (result.status === 'rejected' ? [String(result.reason)] : []));
 
-    return Response.json({ updated, failed });
+    // 500 przy jakimkolwiek błędzie, żeby Vercel oznaczył wywołanie crona jako nieudane.
+    return Response.json({ updated, failed }, { status: failed.length ? 500 : 200 });
 }
