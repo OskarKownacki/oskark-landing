@@ -66,9 +66,31 @@
   --container: 1120px; /* maksymalna szerokość treści */
   --container-narrow: 700px; /* kolumna czytelnicza (blog) */
 
+  /* jedna oś czytania: hero i wszystkie sekcje zaczynają się od tej samej lewej krawędzi */
+  --content-inset: var(--space-6); /* margines boczny treści na telefonie */
+  --trail-gap: var(--space-4); /* odległość linii szlaku od lewej krawędzi treści */
+  --trail-marker: var(--space-2); /* średnica znacznika sekcji na szlaku */
+  --glow-height: 40vh; /* wysokość poświaty ogniska pod ostatnią sekcją */
+
+  /* ogień na szlaku (ScrollFire): idzie po linii szlaku i wypala ją za sobą */
+  --trail-fire-line: 0.5; /* na jakiej wysokości ekranu (0 = góra, 1 = dół) płonie ogień */
+  --trail-marker-fade: 4%; /* jak płynnie zapala się znacznik, gdy dojdzie do niego ogień */
+  --fire-track-width: 2px; /* grubość wypalonej linii */
+  --fire-flame-width: 8px; /* płomyczek nad zapalonym checkpointem */
+  --fire-flame-height: 12px;
+  --fire-flare: 1; /* o ile płomyczek wydłuża się przy pełnym żarze (1 = dwa razy) */
+  --duration-flicker: 520ms; /* jeden cykl migotania płomyczka */
+
   --ease: cubic-bezier(0.2, 0.8, 0.3, 1); /* domyślna krzywa */
   --duration-fast: 140ms; /* hover, focus */
   --duration-base: 260ms; /* wejścia, rozwinięcia */
+}
+
+@media (min-width: 768px) {
+  :root {
+    --content-inset: 20vw; /* margines boczny treści od tabletu w górę */
+    --trail-gap: var(--space-6);
+  }
 }
 
 [data-theme="light"] {

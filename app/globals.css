@@ -183,6 +183,110 @@
   }
 }
 
+/* Szlak: pionowa linia na lewo od treści łączy sekcje w jedną trasę od hero do ogniska.
+   Znacznik przy etykiecie sekcji zapala się, gdy sekcja wjeżdża na ekran. */
+@layer components {
+  .trail { position: relative; }
+  .trail::before {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    left: calc(var(--content-inset) - var(--trail-gap));
+    width: var(--border-width);
+    background: linear-gradient(to bottom, transparent, var(--color-border) var(--space-10), var(--color-border) calc(100% - var(--space-10)), transparent);
+    pointer-events: none;
+  }
+  .trail-section { position: relative; }
+  .trail-marker {
+    position: relative;
+    view-timeline-name: --trail-marker;
+    /* checkpoint zapala się, gdy mija linię ognia na ekranie — razem z dojściem żaru szlaku */
+    --marker-lit-range: cover calc((1 - var(--trail-fire-line)) * 100%) cover calc((1 - var(--trail-fire-line)) * 100% + var(--trail-marker-fade));
+  }
+  /* płomyczek nad znacznikiem: niewidoczny, dopóki żar szlaku nie dojdzie do checkpointu;
+     --fire-heat (ScrollFire) wydłuża go przy szybkim scrollu */
+  .trail-marker::after {
+    content: "";
+    position: absolute;
+    bottom: 50%;
+    left: calc(-1 * var(--trail-gap));
+    width: var(--fire-flame-width);
+    height: calc(var(--fire-flame-height) * (1 + var(--fire-heat, 0) * var(--fire-flare)));
+    translate: -50% 0;
+    transform-origin: bottom center;
+    border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+    background: radial-gradient(ellipse at 50% 85%, var(--lantern-300), var(--lantern-400) 45%, var(--lantern-600));
+    filter: drop-shadow(0 0 var(--space-1) var(--lantern-400));
+    opacity: 0;
+    scale: 0;
+    pointer-events: none;
+  }
+  .trail-marker::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: calc(-1 * var(--trail-gap));
+    width: var(--trail-marker);
+    height: var(--trail-marker);
+    translate: -50% -50%;
+    border-radius: var(--radius-pill);
+    border: var(--border-width) solid var(--color-accent-alt);
+    background: var(--color-bg);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .trail-section {
+      animation: section-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+    .trail-marker::before {
+      animation: marker-lit linear both;
+      animation-timeline: --trail-marker;
+      animation-range: var(--marker-lit-range);
+    }
+    .trail-marker::after {
+      animation: flame-ignite linear both, flame-flicker var(--duration-flicker) ease-in-out infinite;
+      animation-timeline: --trail-marker, auto;
+      animation-range: var(--marker-lit-range), normal;
+    }
+  }
+}
+@keyframes section-reveal { from { opacity: 0; translate: 0 var(--space-6); } }
+@keyframes marker-lit { to { background: var(--color-accent); border-color: var(--color-accent); box-shadow: var(--shadow-glow); } }
+@keyframes flame-ignite { to { opacity: 1; scale: 1; } }
+@keyframes flame-flicker {
+  0%, 100% { transform: scaleY(1) skewX(0deg); }
+  25% { transform: scaleY(1.15) skewX(-6deg); }
+  50% { transform: scaleY(0.9) skewX(4deg); }
+  75% { transform: scaleY(1.1) skewX(-3deg); }
+}
+
+/* Żar na szlaku (components/ScrollFire.tsx): linia szlaku wypala się do wysokości
+   --trail-fire-line ekranu. JS podaje --fire-progress (0–1) i --fire-heat (0–1,
+   prędkość scrolla) na `.trail`, więc płomyczki checkpointów też je widzą. */
+@layer components {
+  .scroll-fire {
+    position: absolute;
+    inset-block: 0;
+    left: calc(var(--content-inset) - var(--trail-gap));
+    width: var(--fire-track-width);
+    translate: -50% 0;
+    pointer-events: none;
+  }
+  .scroll-fire-fill {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    transform-origin: top;
+    transform: scaleY(var(--fire-progress, 0));
+    background: linear-gradient(to bottom, var(--lantern-600), var(--lantern-400));
+    box-shadow: 0 0 var(--space-2) var(--color-glow);
+  }
+}
+
 @keyframes twinkle { 0%, 100% { opacity: 0.45 } 50% { opacity: 1 } }
 @keyframes drift-right { from { transform: translateX(-6%) } to { transform: translateX(106%) } }
 @media (prefers-reduced-motion: reduce) {

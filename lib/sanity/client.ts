@@ -6,3 +6,9 @@ export const client = createClient({
   apiVersion: "2026-07-31",
   useCdn: true,
 });
+
+// Serwerowy klient z prawem zapisu (cron); token nigdy nie trafia do przeglądarki.
+export const writeClient = client.withConfig({
+  token: process.env.NEXT_PRIVATE_SANITY_TOKEN,
+  useCdn: false,
+});

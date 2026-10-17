@@ -13,11 +13,11 @@ const VARIANTS: Record<NonNullable<Props["variant"]>, string> = {
     "bg-transparent text-accent-alt border-transparent font-medium px-c4 py-c3 hover:bg-accent-alt-subtle",
 };
 
+// Osobno, żeby ten sam wygląd miał też link (<a>) — przycisk w <a> to niepoprawny HTML.
+export function buttonClassName(variant: NonNullable<Props["variant"]> = "primary", className = ""): string {
+  return `font-body text-base border rounded-md cursor-pointer transition-[background,box-shadow,border-color] duration-[140ms] ease-[var(--ease-campfire)] ${VARIANTS[variant]} ${className}`;
+}
+
 export function Button({ variant = "primary", className = "", ...props }: Props) {
-  return (
-    <button
-      className={`font-body text-base border rounded-md cursor-pointer transition-[background,box-shadow,border-color] duration-[140ms] ease-[var(--ease-campfire)] ${VARIANTS[variant]} ${className}`}
-      {...props}
-    />
-  );
+  return <button className={buttonClassName(variant, className)} {...props} />;
 }

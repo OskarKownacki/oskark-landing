@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { DICTIONARY, type Lang } from "@/lib/i18n";
 
 /** Przełącznik motywu: ustawia data-theme na <html>, zapisuje wybór.
  *  Domyślny motyw systemu to "dark". */
@@ -18,15 +19,16 @@ export function useTheme() {
   return { theme, setTheme, toggle: () => setTheme((t) => (t === "dark" ? "light" : "dark")) };
 }
 
-export function ThemeToggle() {
+export function ThemeToggle({ lang }: { lang: Lang }) {
   const { theme, toggle } = useTheme();
+  const t = DICTIONARY[lang];
   return (
     <button
       onClick={toggle}
-      aria-label={theme === "dark" ? "Włącz motyw dzienny" : "Włącz motyw nocny"}
+      aria-label={theme === "dark" ? t.switchToLightTheme : t.switchToDarkTheme}
       className="font-[family-name:var(--font-mono)] text-[var(--text-sm)] text-[var(--color-text-secondary)] bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[var(--radius-pill)] px-4 py-2 transition-colors hover:border-[var(--color-accent-alt)]"
     >
-      {theme === "dark" ? "☾ noc" : "☀ dzień"}
+      {theme === "dark" ? t.darkThemeName : t.lightThemeName}
     </button>
   );
 }

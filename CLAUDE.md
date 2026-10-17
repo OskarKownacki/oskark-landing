@@ -23,9 +23,11 @@ Personal portfolio/landing site ("Campfire") built with Next.js App Router, Reac
 
 ### Routes are still being assembled — check before assuming which is "the" homepage
 
-- `app/page.tsx` — still the stock `create-next-app` boilerplate, not yet replaced.
-- `app/landing/page.tsx` — the actual Campfire hero (`MountainScene`), in progress.
-- `app/mockup/page.tsx` — a living component sheet at `/mockup` for visually checking every design-system primitive (typography, buttons, chips, input, cards, code block) together; update it when adding/changing a component.
+Every page lives under `app/[lang]/` (`/pl/…`, `/en/…`); `proxy.ts` redirects unprefixed paths (`/`, `/landing`) by `Accept-Language`. `app/[lang]/layout.tsx` is the root layout (sets `<html lang>`); `app/studio/` has its own root layout.
+
+- `app/[lang]/page.tsx` — still the stock `create-next-app` boilerplate, not yet replaced.
+- `app/[lang]/landing/page.tsx` — the actual Campfire hero (`MountainScene`), in progress.
+- `app/[lang]/mockup/page.tsx` — a living component sheet at `/pl/mockup` for visually checking every design-system primitive (typography, buttons, chips, input, cards, code block) together; update it when adding/changing a component.
 
 ### Design tokens flow: CSS custom properties → Tailwind v4 `@theme inline`
 
@@ -33,11 +35,11 @@ Personal portfolio/landing site ("Campfire") built with Next.js App Router, Reac
 
 **Never hardcode hex colors in components** — always go through a token, otherwise the light theme will drift out of sync with dark.
 
-Fonts (Instrument Serif / Manrope / IBM Plex Mono) are loaded via `next/font/google` in `app/layout.tsx` and exposed as `--font-display-loaded` etc.; `globals.css` points the token names (`--font-display`, `--font-body`, `--font-mono`) at those loaded variables rather than the literal Google Fonts names.
+Fonts (Poltawski Nowy / Hanken Grotesk / IBM Plex Mono — replaced the handoff's Instrument Serif / Manrope) are loaded via `next/font/google` in `app/[lang]/layout.tsx` and exposed as `--font-display-loaded` etc.; `globals.css` points the token names (`--font-display`, `--font-body`, `--font-mono`) at those loaded variables rather than the literal Google Fonts names.
 
 ### Theming
 
-Theme is `data-theme="dark" | "light"` on `<html>`, set in `app/layout.tsx` (dark by default). `components/ThemeToggle.tsx` exports the `useTheme()` hook, which reads/writes `localStorage["campfire-theme"]` and syncs `document.documentElement.dataset.theme`.
+Theme is `data-theme="dark" | "light"` on `<html>`, set in `app/[lang]/layout.tsx` (dark by default). `components/ThemeToggle.tsx` exports the `useTheme()` hook, which reads/writes `localStorage["campfire-theme"]` and syncs `document.documentElement.dataset.theme`.
 
 ### `design-handoff/` is a reference package, not app code
 
@@ -51,4 +53,6 @@ It's excluded from `tsconfig.json` and isn't imported by the app. It contains th
 
 ### Language
 
-UI copy is in Polish (`<html lang="pl">`). Design-handoff docs are also in Polish. Tone rules (see `design-handoff/README.md` "Copy & tone"): write like talking to someone at the same campfire — first person, short sentences, no corporate/enterprise language.
+The site is bilingual (PL default, EN). `lib/i18n.ts` is the single source: `LANGUAGES` (routing + Studio), `DEFAULT_LANG`, and `DICTIONARY` for UI strings not in Sanity (aria labels, mail template, skill levels). Components take a `lang` prop — no hardcoded copy.
+
+Sanity content uses field-level i18n (`sanity-plugin-internationalized-array`): text fields are `internationalizedArrayString`/`Text` (`[{language, value}]`), while images, URLs, email, skill levels and section order are shared. Queries go through `localized()` in `lib/sanity/queries.ts` (needs a `$lang` param; falls back to `DEFAULT_LANG`). Studio labels stay Polish. Design-handoff docs are also in Polish. Tone rules (see `design-handoff/README.md` "Copy & tone"): write like talking to someone at the same campfire — first person, short sentences, no corporate/enterprise language.

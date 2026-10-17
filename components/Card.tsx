@@ -1,14 +1,19 @@
+import type { ReactNode } from "react";
+
 type Props = {
+  media?: ReactNode;
   eyebrow: string;
   title: string;
   description: string;
   tags: string[];
   href: string;
+  linkLabel: string;
 };
 
-export function Card({ eyebrow, title, description, tags, href }: Props) {
+export function Card({ media, eyebrow, title, description, tags, href, linkLabel }: Props) {
   return (
     <article className="flex flex-col gap-c3 bg-surface border border-border-base rounded-lg p-c5 shadow-sm transition-[box-shadow,transform,border-color] duration-[260ms] ease-[var(--ease-campfire)] hover:shadow-md hover:-translate-y-[3px] hover:border-accent">
+      {media}
       <span className="font-mono text-xs font-medium tracking-[var(--tracking-label)] uppercase text-accent-alt">
         {eyebrow}
       </span>
@@ -23,7 +28,7 @@ export function Card({ eyebrow, title, description, tags, href }: Props) {
         ))}
       </div>
       <a href={href} className="text-base font-medium mt-c1">
-        Zobacz repozytorium →
+        {linkLabel}
       </a>
     </article>
   );
