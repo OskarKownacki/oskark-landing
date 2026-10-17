@@ -1,4 +1,5 @@
 import mql from '@microlink/mql';
+import { revalidatePath } from 'next/cache';
 import { writeClient } from '@/lib/sanity/client';
 import { SNAPSHOT_URL_QUERY } from '@/lib/sanity/queries';
 
@@ -60,6 +61,10 @@ export async function GET(request: Request) {
 
     const updated = results.flatMap((result) => (result.status === 'fulfilled' ? [result.value] : []));
     const failed = results.flatMap((result) => (result.status === 'rejected' ? [String(result.reason)] : []));
+
+    // sanityFetch trzyma dane w cache bez wygaśnięcia, a <SanityLive /> unieważnia je tylko
+    // z otwartej karty przeglądarki — po zapisie z crona trzeba odświeżyć strony samemu.
+    if (updated.length) revalidatePath('/', 'layout');
 
     // 500 przy jakimkolwiek błędzie, żeby Vercel oznaczył wywołanie crona jako nieudane.
     return Response.json({ updated, failed }, { status: failed.length ? 500 : 200 });
