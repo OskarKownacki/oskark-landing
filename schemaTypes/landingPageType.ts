@@ -20,7 +20,18 @@ const portfolioSection = defineArrayMember({
   title: "Portfolio (karty projektów)",
   type: "object",
   preview: sectionPreview,
-  fields: [titleField, headingField],
+  fields: [
+    titleField,
+    headingField,
+    // kolejność na liście = kolejność kart na stronie; projekt spoza listy jest ukryty
+    defineField({
+      name: "projects",
+      title: "Projekty (przeciągnij, by zmienić kolejność)",
+      type: "array",
+      of: [defineArrayMember({ type: "reference", to: [{ type: "snapshot" }] })],
+      validation: (rule) => rule.unique(),
+    }),
+  ],
 });
 
 const aboutSection = defineArrayMember({

@@ -39,13 +39,18 @@ export const HERO_QUERY: string = `*[_type == "hero"][0]{
   email
 }`
 
+// Portfolio: karty w kolejności z listy `projects`. defined(@->_id) pomija odnośniki do
+// projektów nieopublikowanych. Pusta lista (pole niewypełnione) = wszystkie projekty.
 export const LANDING_SECTIONS_QUERY: string = `*[_type == "landingPage"][0].sections[]{
   _key,
   _type,
   "title": ${localized("title")},
   "heading": ${localized("heading")},
   _type == "portfolioSection" => {
-    "snapshots": *[_type == "snapshot"]${SNAPSHOT_CARD_FIELDS}
+    "snapshots": coalesce(
+      projects[defined(@->_id)]->${SNAPSHOT_CARD_FIELDS},
+      *[_type == "snapshot"]${SNAPSHOT_CARD_FIELDS}
+    )
   },
   _type == "aboutSection" => {
     "text": ${localized("text")},
