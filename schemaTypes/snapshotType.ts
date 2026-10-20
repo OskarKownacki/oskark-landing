@@ -26,6 +26,22 @@ export const snapshotType = defineType({
             type: 'internationalizedArrayText',
         }),
         defineField({
+            title: 'Status color',
+            name: 'statusType',
+            type: 'string',
+            description: 'Kolor i kropka pilla statusu (wartości jak ChipStatus w components/Chip.tsx).',
+            options: {
+                list: [
+                    { title: 'Success (zielony)', value: 'success' },
+                    { title: 'Warning (żółty)', value: 'warning' },
+                    { title: 'Error (czerwony)', value: 'error' },
+                    { title: 'Neutral (bez kropki)', value: 'neutral' },
+                ],
+                layout: 'radio',
+            },
+            initialValue: 'neutral',
+        }),
+        defineField({
             title: 'RepoURL',
             name: 'repoURL',
             type: 'url',

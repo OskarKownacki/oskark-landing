@@ -1,10 +1,12 @@
 import type { HTMLAttributes } from "react";
 
+export type ChipStatus = "success" | "warning" | "error" | "neutral";
+
 type Props = HTMLAttributes<HTMLSpanElement> & {
-  status?: "success" | "warning" | "error" | "neutral";
+  status?: ChipStatus;
 };
 
-const STATUS: Record<NonNullable<Props["status"]>, string> = {
+const STATUS: Record<ChipStatus, string> = {
   success: "text-success bg-[var(--color-success-subtle)]",
   warning: "text-warning bg-[var(--color-warning-subtle)]",
   error: "text-error bg-[var(--color-error-subtle)]",

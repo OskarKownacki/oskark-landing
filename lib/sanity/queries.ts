@@ -23,6 +23,7 @@ const SNAPSHOT_CARD_FIELDS = `{
   "title": ${localized("title")},
   "eyebrow": ${localized("eyebrow")},
   "status": ${localized("status")},
+  statusType,
   "body": ${localized("body")},
   repoURL,
   tags,

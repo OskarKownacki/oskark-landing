@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Card } from "@/components/Card";
-import { Chip } from "@/components/Chip";
+import { Chip, type ChipStatus } from "@/components/Chip";
 import { DICTIONARY, type Lang } from "@/lib/i18n";
 
 const SCREENSHOT_SIZES = "(max-width: 768px) 100vw, 400px";
@@ -11,6 +11,7 @@ export type SnapshotCardData = {
   title: string | null;
   eyebrow: string | null;
   status: string | null;
+  statusType: ChipStatus | null;
   body: string | null;
   repoURL: string | null;
   tags: string[] | null;
@@ -18,12 +19,12 @@ export type SnapshotCardData = {
 };
 
 export function SnapshotCard({ snapshot, lang }: { snapshot: SnapshotCardData; lang: Lang }) {
-  const { title, eyebrow, status, body, repoURL, tags, screenshotUrl } = snapshot;
+  const { title, eyebrow, status, statusType, body, repoURL, tags, screenshotUrl } = snapshot;
   const t = DICTIONARY[lang];
 
   return (
     <div className="flex flex-col gap-c2">
-      {status && <Chip className="w-fit">{status}</Chip>}
+      {status && <Chip status={statusType ?? "neutral"} className="w-fit">{status}</Chip>}
       <Card
         media={
           screenshotUrl && (

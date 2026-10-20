@@ -98,6 +98,7 @@ export default async function MockupPage({ params }: PageProps<"/[lang]/mockup">
                 title: "Karta ze snapshotem",
                 eyebrow: "03 — case study",
                 status: "Build gotowy",
+                statusType: "success",
                 body: "Karta zasilana dokumentem snapshot z Sanity, ze zrzutem strony nad treścią.",
                 repoURL: "#",
                 tags: ["Sanity", "Microlink"],
